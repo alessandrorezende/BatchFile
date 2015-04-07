@@ -1,0 +1,71 @@
+# batch file example
+goto start
+REM ***********************************************************************************************************************
+REM ***********************************************************************************************************************
+:abrir2InstanciaFerramenta
+title Aguarde, Criando pasta local...
+cls
+echo.
+echo.
+mkdir "C:\Users\%USERNAME%\AppData\Local\Temp\pg\init"
+echo.
+del "C:\Users\%USERNAME%\AppData\Local\Temp\pgo\init\"*.accde
+echo.
+copy "R:\0_FERRAMENTAS\INTERFACE\"*pg.accde "C:\Users\%USERNAME%\AppData\Local\Temp\pg\init"
+echo.
+cls
+echo  *********************************************************************
+echo    ABRIR FERRAMENTA
+echo  *********************************************************************
+cls
+echo. 
+echo. 
+cd  "C:\Users\%USERNAME%\AppData\Local\Temp\pg\init"
+ren "C:\Users\%USERNAME%\AppData\Local\Temp\pg\init\"*.accde "pg.accde"
+Start "" "C:\Users\%USERNAME%\AppData\Local\Temp\pg\init\pg.accde"
+echo. 
+echo. 
+echo comando realizado!
+echo. 
+echo. 
+echo. 
+pause
+cls
+goto start
+REM ***********************************************************************************************************************
+REM ***********************************************************************************************************************
+:abrirFerramenta
+title Aguarde, Criando pasta local...
+cls
+echo.
+echo.
+mkdir "C:\Users\%USERNAME%\AppData\Local\Temp\pg"
+echo.
+del "C:\Users\%USERNAME%\AppData\Local\Temp\pg\"*.accde
+echo.
+copy "R:\0_FERRAMENTAS\INTERFACE\"*pagamentoDevolvido.accde "C:\Users\%USERNAME%\AppData\Local\Temp\pg"
+echo.
+cls
+echo  *********************************************************************
+echo    ABRIR FERRAMENTA
+echo  *********************************************************************
+cls
+echo. 
+echo. 
+cd  "C:\Users\%USERNAME%\AppData\Local\Temp\pg"
+ren "C:\Users\%USERNAME%\AppData\Local\Temp\pg\"*.accde "pg.accde"
+Start "" "C:\Users\%USERNAME%\AppData\Local\Temp\pg\pg.accde"
+echo. 
+echo. 
+echo comando realizado!
+echo. 
+echo. 
+echo. 
+pause
+cls
+goto start
+REM ***********************************************************************************************************************
+REM ***********************************************************************************************************************
+:sair
+title Aguarde, Saindo...
+exit
