@@ -1,0 +1,46 @@
+echo off
+echo .      ****
+set ABG=%programFiles%\ABG Diagnose Management Service
+
+cd support
+copy .\TamnunSVC.exe .\AgentStarter.exe
+
+echo ------------------------ stop and uninstall the old service (if exists)
+echo net stop ABG_Tamnun_SVC
+net stop ABG_Tamnun_SVC
+.\AgentStarter.exe -sleep 5
+
+echo AgentStarter.exe -u
+.\AgentStarter.exe -u
+
+echo ------------------------ uninstall old MSI
+.\AgentStarter.exe -sleep 5
+msiexec /X "ABG Diagnose Management Service.msi" /qn ALLUSERS=1 /Le AbgAgentSVC_uninstall.log
+
+echo ------------------------ Install new MSI
+msiexec /I "ABG Diagnose Management Service.msi" /qn ALLUSERS=1 /Le AbgAgentSVC_install.log
+
+echo ------------------------ Make sub directories Copy Support files
+copy *.ini "%ABG%\"
+copy *.txt "%ABG%\"
+copy *.doc "%ABG%\"
+copy *.bat "%ABG%\"
+
+echo ------------------------ install and start the new service
+c:
+cd "%ABG%"
+cd
+if not exist LOG mkdir LOG
+if not exist LOG mkdir DATA
+
+copy .\TamnunSVC.exe .\AgentStarter.exe
+echo ------------------------ install and start the new service
+.\AgentStarter.exe -a
+.\AgentStarter.exe -g
+
+echo .
+echo .            ----------
+echo .            -- DONE --
+echo .            ----------
+echo .
+.\AgentStarter.exe -sleep 2
