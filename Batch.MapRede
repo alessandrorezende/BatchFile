@@ -1,0 +1,10 @@
+@echo.
+@echo.       #######################################
+@echo.       ###      Mapear unidade de rede     ###
+@echo.       #######################################
+@cls
+@echo ##Aguarde um momento##
+
+net use Z: \\pasta1\programs\abc
+net use R: \\pasta1\programs\bbbb
+net use G: \\pasta1\programs\eeee
